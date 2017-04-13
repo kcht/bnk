@@ -1,3 +1,17 @@
 <h1>Nowy odcinek audycji</h1>
 <p>Dodaj informacje o nowym odcinku</p>
 <p>To już normalny tekst</p>
+
+<!--<%= @welcome_string %> -->
+
+<p>
+<%= @welcome_string="#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>
+</p>
+<p>
+    <%= @welcome_string+"xxxx" %> 
+</p>
+
+<p>
+    <%= url_length(@welcome_string) %> 
+</p>
+
