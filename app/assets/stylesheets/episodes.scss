@@ -1,0 +1,39 @@
+// Place all the styles related to the episodes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+h1 {
+	font-family: sans-serif;
+	font-size: 34px;
+	font-style: normal;
+	font-variant: small-caps;
+	font-weight: 400;
+	line-height: 71.4px;
+}
+h3 {
+	font-family: sans-serif;
+	font-size: 25px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 37.5px;
+}
+p {
+	font-family: Verdana,Geneva,sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 21px;
+}
+blockquote {
+	font-family: sans-serif;
+	font-size: 27px;
+	font-style: italic;
+	font-variant: small-caps;
+	font-weight: 400;
+	line-height: 40.5px;
+}
+
+body {
+    background-color: lightblue;
+}
