@@ -14,6 +14,11 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </p>
+
+  <p>
+    <%= f.label :airing_date %><br>
+    <%= f.date_select :airing_date, {order: [:day, :month, :year], prompt: false, start_year: Time.now.year, end_year: 2090} %>
+  </p>
  
   <p>
     <%= f.submit %>
