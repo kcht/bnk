@@ -22,3 +22,42 @@
   <strong>Aired:</strong>
   <%= @days_ago_s %>
 </p>
+<h1>Playlist</h1>
+<p>
+<ol>
+<% @program.songs.each do |song| %>
+  <li> 
+    <%= song.title %>
+    -<%= song.artist %>
+    (<%= song.album %>, 
+    <%= song.year %>)
+
+  </li>
+
+<% end %>
+</ol>
+</p>
+
+<h1>Add a song to programs playlist:</h1>
+<%= form_for([@program, @program.songs.build]) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :artist %><br>
+    <%= f.text_field :artist %>
+  </p>
+
+    <p>
+    <%= f.label :album %><br>
+    <%= f.text_field :album %>
+  </p>
+    <p>
+    <%= f.label :year %><br>
+    <%= f.text_field :year %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
