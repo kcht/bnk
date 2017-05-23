@@ -1,9 +1,11 @@
 class ProgramReaderAdapter 
+	include SongAdapter
 
-	attr_accessor :contents
+	attr_accessor :contents, :number, :title, :date, :description, :songs
 
-	def read_from_file(filename)
+	def initialize(filename)
 		@contents = File.read(filename)
+		parse_contents(@contents)
 	end
 
 	private
@@ -11,6 +13,8 @@ class ProgramReaderAdapter
 	def parse_contents(contents)
 		lines = @contents.split("\n")
 		@number, @title = number_title(lines[0])
+		@description, song_lines = parse_description_songs(lines[1, lines.length])
+		@songs = get_songs(song_lines)
 	end
 
 	def number_title(line)
@@ -24,12 +28,27 @@ class ProgramReaderAdapter
 		number[number_index, number.length]
 	end
 
-	def description(lines) 
+	def parse_description_songs(lines) 
 		description = ""
+		song_lines = []
+		song_started = false
 		lines.each do |line|
-			break if line =~ /Playlist/
-			description += line + "\n"
+			if( (line =~ /Playlist/) == 0) 
+				song_started = true
+			elsif (!song_started)
+				description += line + "\n" 
+			else	
+				song_lines.push(line)
+			end
 		end
-		description
+		[description, song_lines]
+	end
+
+	def get_songs(song_list)
+		songs = []
+		song_list.each do |song|
+			songs.push(SongAdapter.new(song))
+		end
+		songs
 	end
 end

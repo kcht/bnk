@@ -6,4 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Song.create([{title: 'random', year: 1999}])
+programs = Dir.entries("db/bnk_data")
+programs.select! {|program| program.match("bnk*")}
+
+# programs.each do |program|
+	pra = ProgramReaderAdapter.new("db/bnk_data/" + programs[0])
+	Program.create({
+		number: pra.number,
+		title: pra.title,
+		description: pra.description
+	})
+	pra.songs.each do |song|
+		Song.create({
+			title: song.title,
+			artist: song.artist,
+			album: song.album,
+			year: song.year,
+			program_id: pra.number
+		})
+	end
+
+
+# end
