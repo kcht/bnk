@@ -11,33 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418220723) do
+ActiveRecord::Schema.define(version: 20170418215644) do
 
   create_table "articles", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "text",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "programs", force: :cascade do |t|
-    t.integer  "number",      limit: 4
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "number"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.date     "airing_date"
   end
 
   create_table "songs", force: :cascade do |t|
-    t.string  "title",      limit: 255
-    t.string  "artist",     limit: 255
-    t.string  "album",      limit: 255
-    t.integer "year",       limit: 4
-    t.integer "program_id", limit: 4
+    t.string  "title"
+    t.string  "artist"
+    t.string  "album"
+    t.integer "year"
+    t.integer "program_id"
   end
 
-  add_index "songs", ["program_id"], name: "index_songs_on_program_id", using: :btree
+  add_index "songs", ["program_id"], name: "index_songs_on_program_id"
 
-  add_foreign_key "songs", "programs"
 end
